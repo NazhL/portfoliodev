@@ -15,13 +15,43 @@ body{background:#000;color:#fff;font-family:Inter, system-ui, -apple-system, 'Se
   .hero__text h1{font-size:16px}
 }
 
-/* Omori-style hand-drawn animations */
-.scene [stroke]{
+/* Omori-style hand-drawn animations - sequenced drawing */
+@keyframes draw{ to { stroke-dashoffset: 0; } }
+
+/* Desktop elements draw first (monitor, tower, USB) */
+.draw-desktop, .draw-desktop [stroke]{
+  stroke-dasharray:1400;
+  stroke-dashoffset:1400;
+  animation: draw 0.9s ease forwards;
+  animation-delay: 0s;
+}
+
+/* Desk front edge draws slightly before rug completes */
+.desk-edge, .desk-edge [stroke]{
   stroke-dasharray:1200;
   stroke-dashoffset:1200;
-  animation: draw 1.6s ease forwards;
+  animation: draw 0.9s ease forwards;
+  animation-delay: 0.7s;
 }
-@keyframes draw{ to { stroke-dashoffset: 0; } }
+
+/* Rug draws after desktop */
+.rug, .rug [stroke]{
+  stroke-dasharray:2400;
+  stroke-dashoffset:2400;
+  animation: draw 0.9s ease forwards;
+  animation-delay: 0.9s;
+}
+
+/* FOLIO letters draw last */
+.folio-letters, .folio-letters [stroke]{
+  stroke-dasharray:1600;
+  stroke-dashoffset:1600;
+  animation: draw 1.2s ease forwards;
+  animation-delay: 1.6s;
+}
+
+/* on hover speed up drawing */
+.scene:hover .draw-desktop, .scene:hover .folio-letters, .scene:hover .rug, .scene:hover .desk-edge{ animation-duration:0.6s; }
 
 /* slow wavy wobble */
 .scene .wobble{
