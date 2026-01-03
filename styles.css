@@ -14,3 +14,47 @@ body{background:#000;color:#fff;font-family:Inter, system-ui, -apple-system, 'Se
   .scene{transform:scale(0.9);transform-origin:center}
   .hero__text h1{font-size:16px}
 }
+
+/* Omori-style hand-drawn animations */
+.scene [stroke]{
+  stroke-dasharray:1200;
+  stroke-dashoffset:1200;
+  animation: draw 1.6s ease forwards;
+}
+@keyframes draw{ to { stroke-dashoffset: 0; } }
+
+/* slow wavy wobble */
+.scene .wobble{
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: wobble 6s ease-in-out infinite;
+}
+@keyframes wobble{
+  0%{ transform: translateY(0) rotate(0deg); }
+  25%{ transform: translateY(-0.6px) rotate(-0.2deg); }
+  50%{ transform: translateY(0.6px) rotate(0.2deg); }
+  75%{ transform: translateY(-0.3px) rotate(-0.1deg); }
+  100%{ transform: translateY(0) rotate(0deg); }
+}
+
+/* small jitter for pc setup */
+.pc-setup{ transform-box: fill-box; transform-origin: 20% 50%; animation: pc-jiggle 4s ease-in-out infinite; }
+@keyframes pc-jiggle{
+  0%{ transform: translateX(0) translateY(0); }
+  50%{ transform: translateX(1.2px) translateY(-0.6px); }
+  100%{ transform: translateX(0) translateY(0); }
+}
+
+/* subtle individual letter float */
+.folio-letters{ animation: letters-bob 5s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 50%; }
+@keyframes letters-bob{
+  0%{ transform: translateY(0); }
+  50%{ transform: translateY(-1.6px); }
+  100%{ transform: translateY(0); }
+}
+
+/* make the drawing periodically tremble more on hover */
+.scene:hover [stroke]{ animation-duration: 0.8s; }
+
+/* ensure SVG doesn't overflow container */
+.scene{ overflow:visible; }
