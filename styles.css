@@ -53,6 +53,9 @@ body{background:#000;color:#fff;font-family:Inter, system-ui, -apple-system, 'Se
 /* on hover speed up drawing */
 .scene:hover .draw-desktop, .scene:hover .folio-letters, .scene:hover .rug, .scene:hover .desk-edge{ animation-duration:0.6s; }
 
+/* rug outline draws with the rug to ensure full rectangle is visible */
+.rug-outline{ stroke-dasharray:3600; stroke-dashoffset:3600; animation: draw 0.95s ease forwards; animation-delay: 0.9s; }
+
 /* slow wavy wobble */
 .scene .wobble{
   transform-box: fill-box;
@@ -85,14 +88,14 @@ body{background:#000;color:#fff;font-family:Inter, system-ui, -apple-system, 'Se
 
 /* Per-letter staggered draw so F O L I O loads in order */
 .folio-letters .letter *{
-  stroke-dasharray:500;
-  stroke-dashoffset:500;
-  animation: draw 0.85s ease forwards;
+  stroke-dasharray:2000;
+  stroke-dashoffset:2000;
+  animation: draw 0.95s cubic-bezier(.2,.7,.2,1) forwards;
 }
-.folio-letters .letter:nth-child(1) *{ animation-delay: 1.6s; }
-.folio-letters .letter:nth-child(2) *{ animation-delay: 1.9s; }
-.folio-letters .letter:nth-child(3) *{ animation-delay: 2.2s; }
-.folio-letters .letter:nth-child(4) *{ animation-delay: 2.5s; }
+.folio-letters .letter:nth-child(1) *{ animation-delay: 1.8s; }
+.folio-letters .letter:nth-child(2) *{ animation-delay: 2.05s; }
+.folio-letters .letter:nth-child(3) *{ animation-delay: 2.3s; }
+.folio-letters .letter:nth-child(4) *{ animation-delay: 2.55s; }
 .folio-letters .letter:nth-child(5) *{ animation-delay: 2.8s; }
 
 /* make the drawing periodically tremble more on hover */
